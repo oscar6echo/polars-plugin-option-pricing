@@ -9,6 +9,9 @@
 Commands:
 
 ```sh
+# ------- install from pypi/artifactory
+pip install polars_plugin_option_pricing
+
 # ------- install from repo
 # clone
 git clone https://github.com/oscar6echo/polars-plugin-option-pricing.git
@@ -23,9 +26,6 @@ pip install -v -e .
 
 # watch 
 cargo watch --watch ./src -- pip install -v -e .
-
-# ------- install pypi/artifactory
-pip install polars_plugin_option_pricing
 ```
 
 ## Build
