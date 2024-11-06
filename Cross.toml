@@ -1,0 +1,13 @@
+[target.x86_64-pc-windows-gnu]
+image = "cross-pyo3:x86_64-pc-windows-gnu"
+
+
+[target.x86_64-pc-windows-gnu.env]
+passthrough = [
+    "RUST_DEBUG",
+    "RUST_BACKTRACE",
+    "RUST_LOG",
+    # "PYO3_CROSS_LIB_DIR=/usr/local/python/lib",
+    "PYO3_CROSS_PYTHON_VERSION=3.10",
+    "DIST_EXTRA_CONFIG",
+]
