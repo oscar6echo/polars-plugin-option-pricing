@@ -16,6 +16,7 @@ option-pricing = { version = "0.1.4" }
 [lib]
 # needs to match the name of the function with the `[#pymodule]` attribute
 name = "_rust"
+path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 
@@ -23,6 +24,3 @@ crate-type = ["cdylib"]
 strip = true
 lto = true
 codegen-units = 1
-
-# [target.'cfg(target_os = "linux")'.dependencies]
-# jemallocator = { version = "0.5", features = ["disable_initial_exec_tls"] }
