@@ -15,15 +15,50 @@ pip install polars_plugin_option_pricing
 
 ## Use
 
+In short:
+
 Calculate Call & Put Option price and greeks with [BlackScholes formula](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model):
 
 + [run-bs.py](./test/run-bs.py)
 + [run-bs.ipynbpy](./test/run-bs.ipynb)
 
+In short:
+
+```sh
+import polars_plugin_option_pricing as m
+
+# black scholes
+df = df.with_columns(
+    output_bs=m.black_scholes("is_call", "spot", "strike", "mat", "vol", "rate", "div"),
+).drop(["is_call"]).unnest("output_bs")
+```
+
 Calculate [implied volatility](https://en.wikipedia.org/wiki/Implied_volatility) for call options:
 
 + [run-iv.py](./test/run-iv.py)
 + [run-iv.ipynbpy](./test/run-iv.ipynb)
+
+In short:
+
+```sh
+import polars_plugin_option_pricing as m
+
+# implied vol
+df = df.with_columns(
+    iv_output=m.implied_vol(
+        "price",
+        "spot",
+        "strike",
+        "mat",
+        "rate",
+        "div",
+        iter=10,
+        prec=1e-7,
+        # method="Newton",
+        method="Halley",
+    )
+).unnest("iv_output")
+```
 
 ## Install dev mode
 
@@ -89,7 +124,7 @@ python -m build .
 This produces wheels for linux and windows:
 
 ```sh
-ls -1  dist
+ls -l  dist
 polars_plugin_option_pricing-0.1.0-cp312-cp312-linux_x86_64.whl
 polars_plugin_option_pricing-0.1.0-cp312-cp312-linux_x86_64.whl
 polars_plugin_option_pricing-0.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
