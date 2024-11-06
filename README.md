@@ -11,21 +11,6 @@ Commands:
 ```sh
 # ------- install from pypi/artifactory
 pip install polars_plugin_option_pricing
-
-# ------- install from repo
-# clone
-git clone https://github.com/oscar6echo/polars-plugin-option-pricing.git
-cd polars-plugin-option-pricing
-
-# regular install
-pip install build
-
-# dev install
-# -v (verbose) displays rust logs
-pip install -v -e .
-
-# watch 
-cargo watch --watch ./src -- pip install -v -e .
 ```
 
 ## Use
@@ -135,3 +120,4 @@ twine upload dist/*win_amd64*
 
 + [Polars plugins tutorial](https://marcogorelli.github.io/polars-plugins-tutorial/) by Marco Gorelli -> Very useful !
 + Github issue [Suggestion: Plugin full example with input of n cols and output of m cols](https://github.com/MarcoGorelli/polars-plugins-tutorial/issues/58)
++ repo [oscar6echo/pyo3-option-pricing](https://github.com/oscar6echo/pyo3-option-pricing) using the same underlying crate, but vastly less efficient for batch pricing (individual option pricing).
