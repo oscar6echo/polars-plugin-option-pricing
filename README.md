@@ -165,4 +165,4 @@ twine upload dist/*win_amd64*
 
 + [Polars plugins tutorial](https://marcogorelli.github.io/polars-plugins-tutorial/) by Marco Gorelli -> Very useful !
 + Github issue [Suggestion: Plugin full example with input of n cols and output of m cols](https://github.com/MarcoGorelli/polars-plugins-tutorial/issues/58)
-+ repo [oscar6echo/pyo3-option-pricing](https://github.com/oscar6echo/pyo3-option-pricing) using the same underlying crate, but vastly less efficient for batch pricing (individual option pricing).
++ repo [oscar6echo/pyo3-option-pricing](https://github.com/oscar6echo/pyo3-option-pricing) using the same underlying crate, but vastly less efficient for batch pricing.
