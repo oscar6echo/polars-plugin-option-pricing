@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools >= 69.0", "setuptools-rust >= 1.8", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "polars_plugin_option_pricing"
+version = "0.1.0"
+authors = [{ name = "firstname lastname", email = "author@gmail.com" }]
+description = "black scholes and implied vol calc"
+keywords = ["polars", "plugin", "blackscholes"]
+license = { text = "MIT" }
+readme = "README.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+]
+requires-python = ">=3.10"
+dependencies = [
+    # none
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.urls]
+repository = "https://github.com/oscar6echo/polars-plugin-explo.git"
+# homepage = ""
+# documentation = ""
+# issues = ""
+# changelog = ""
+
+# [tool.setuptools.packages.find]
+# where = ["."]
+# include = ["*"]
+# exclude = ["tests"]
+
+[tool.setuptools]
+packages = ["polars_plugin_option_pricing"]
+
+[[tool.setuptools-rust.ext-modules]]
+# Private Rust extension module to be nested into the Python package
+# Cf. https://setuptools-rust.readthedocs.io/en/latest/reference.html
+target = "polars_plugin_option_pricing._rust"
+# IMPORTANT: build with --release -> large impact on speed
+# true -> dev, false -> release
+debug = false
+# reduce wheel size
+strip = "All"
+# used for cross compile
+# args = ...
