@@ -1,4 +1,4 @@
-# Polar plugin option-pricing
+# Polar plugin Option Pricing
 
 ## Overview
 
