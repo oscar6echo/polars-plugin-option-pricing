@@ -24,7 +24,7 @@ Calculate Call & Put Option price and greeks with [BlackScholes formula](https:/
 
 In short:
 
-```sh
+```py
 import polars_plugin_option_pricing as m
 
 # black scholes
@@ -50,7 +50,7 @@ Calculate [implied volatility](https://en.wikipedia.org/wiki/Implied_volatility)
 
 In short:
 
-```sh
+```py
 import polars_plugin_option_pricing as m
 
 # implied vol
