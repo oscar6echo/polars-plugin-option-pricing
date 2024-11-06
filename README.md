@@ -15,7 +15,7 @@ pip install polars_plugin_option_pricing
 
 ## Use
 
-In short:
+### Black-Scholes
 
 Calculate Call & Put Option price and greeks with [BlackScholes formula](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model):
 
@@ -29,9 +29,19 @@ import polars_plugin_option_pricing as m
 
 # black scholes
 df = df.with_columns(
-    output_bs=m.black_scholes("is_call", "spot", "strike", "mat", "vol", "rate", "div"),
+    output_bs=m.black_scholes(
+        "is_call", 
+        "spot", 
+        "strike", 
+        "mat", 
+        "vol", 
+        "rate", 
+        "div"
+    ),
 ).drop(["is_call"]).unnest("output_bs")
 ```
+
+### Implied Vol
 
 Calculate [implied volatility](https://en.wikipedia.org/wiki/Implied_volatility) for call options:
 
