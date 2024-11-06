@@ -28,6 +28,39 @@ pip install -v -e .
 cargo watch --watch ./src -- pip install -v -e .
 ```
 
+## Use
+
+Calculate Call & Put Option price and greeks with [BlackScholes formula](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model):
+
++ [run-bs.py](./test/run-bs.py)
++ [run-bs.ipynbpy](./test/run-bs.ipynb)
+
+Calculate [implied volatility](https://en.wikipedia.org/wiki/Implied_volatility) for call options:
+
++ [run-iv.py](./test/run-iv.py)
++ [run-iv.ipynbpy](./test/run-iv.ipynb)
+
+## Install dev mode
+
+Commands:
+
+```sh
+# ------- install from repo
+# clone
+git clone https://github.com/oscar6echo/polars-plugin-option-pricing.git
+cd polars-plugin-option-pricing
+
+# regular install
+pip install build
+
+# dev install
+# -v (verbose) displays rust logs
+pip install -v -e .
+
+# watch 
+cargo watch --watch ./src -- pip install -v -e .
+```
+
 ## Build
 
 Commands:
