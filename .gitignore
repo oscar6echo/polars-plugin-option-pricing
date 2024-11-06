@@ -9,5 +9,6 @@ build/
 .ipynb_checkpoints/
 
 target/
-wip/
 notebook/
+
+# wip/
