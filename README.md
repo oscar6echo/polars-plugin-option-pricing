@@ -107,7 +107,7 @@ pip install ziglang
 
 maturin build --release --target x86_64-unknown-linux-gnu --zig --out dist
 
-# ------- build windows wheel - using cross
+# ------- build windows wheel
 # debian & co
 sudo apt-get install mingw-w64
 # redhat & co
