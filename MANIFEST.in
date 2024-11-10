@@ -1,9 +1,0 @@
-
-include README.md
-include build-manylinux-wheels.sh
-include Dockerfile.*
-
-include Cargo.toml
-include Cross.toml
-
-recursive-include src *.rs

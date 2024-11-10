@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools >= 70.0", "setuptools-rust >= 1.8", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["maturin >=1.0,<2.0", "polars >= 1.3"]
+build-backend = "maturin"
 
 
 [project]
@@ -38,22 +38,9 @@ repository = "https://github.com/oscar6echo/polars-plugin-explo.git"
 # issues = ""
 # changelog = ""
 
-# [tool.setuptools.packages.find]
-# where = ["."]
-# include = ["*"]
-# exclude = ["tests"]
 
-[tool.setuptools]
-packages = ["polars_plugin_option_pricing"]
-
-[[tool.setuptools-rust.ext-modules]]
-# Private Rust extension module to be nested into the Python package
-# Cf. https://setuptools-rust.readthedocs.io/en/latest/reference.html
-target = "polars_plugin_option_pricing._rust"
-# IMPORTANT: build with --release -> large impact on speed
-# true -> dev, false -> release
-debug = false
-# reduce wheel size
-strip = "All"
-# used for cross compile
-# args = ...
+[tool.maturin]
+module-name = "polars_plugin_option_pricing._rust"
+include = ["src/**/*.rs"]
+exclude = ["wip/**/*", "legacy/**/*"]
+# profile = "release"

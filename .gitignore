@@ -3,6 +3,7 @@ __pycache__/
 *.so
 *.egg-info/
 dist/
+dist-s/
 build/
 
 .pytest_cache/
@@ -10,5 +11,3 @@ build/
 
 target/
 notebook/
-
-# wip/

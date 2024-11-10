@@ -80,15 +80,17 @@ Commands:
 git clone https://github.com/oscar6echo/polars-plugin-option-pricing.git
 cd polars-plugin-option-pricing
 
-# regular install
-pip install build
+# fast compile, slow exec
+maturin develop
+# slow compile, fast exec
+maturin develop --release
 
-# dev install
-# -v (verbose) displays rust logs
+
+# alternative
 pip install -v -e .
 
 # watch 
-cargo watch --watch ./src -- pip install -v -e .
+cargo watch --watch ./src -- maturin develop
 ```
 
 ## Build
@@ -97,50 +99,30 @@ Commands:
 
 ```sh
 # ------- build native wheel
-unset CARGO
-unset CARGO_BUILD_TARGET
-unset PYO3_CROSS_LIB_DIR
-unset PYO3_CROSS_PYTHON_VERSION
-unset DIST_EXTRA_CONFIG
-
-python -m build .
+maturin build --release --out dist
 
 # ------- build manylinux wheel
-# image used by build
-docker build -t builder-manylinux:local -f ./Dockerfile.manylinux .
+# install zig
+pip install ziglang
 
-# build wheels for several python versions
-docker run --rm -v $(pwd):/io builder-manylinux:local /bin/bash /io/build-manylinux-wheels.sh
-
+maturin build --release --target x86_64-unknown-linux-gnu --zig --out dist
 
 # ------- build windows wheel - using cross
-# prerequisite
-cargo install cross
+# debian & co
+sudo apt-get install mingw-w64
+# redhat & co
+sudo dnf install mingw64-gcc
 
-export CARGO=cross
-export CARGO_BUILD_TARGET=x86_64-pc-windows-gnu
-export DIST_EXTRA_CONFIG=/tmp/build-opts.cfg
-
-# set wheel suffix
-echo -e "[bdist_wheel]\nplat_name=win-amd64" > $DIST_EXTRA_CONFIG
-
-# image used by cross
-docker build -t cross-pyo3:x86_64-pc-windows-gnu -f ./Dockerfile.win .
-
-# build windows wheel
-python -m build .
+maturin build --release --target x86_64-pc-windows-gnu --out dist
 ```
 
 This produces wheels for linux and windows:
 
 ```sh
-ls -l  dist
-polars_plugin_option_pricing-0.1.0-cp312-cp312-linux_x86_64.whl
-polars_plugin_option_pricing-0.1.0-cp312-cp312-linux_x86_64.whl
-polars_plugin_option_pricing-0.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-polars_plugin_option_pricing-0.1.0-cp312-cp312-win_amd64.whl
-polars_plugin_option_pricing-0.1.0-cp311-cp311-linux_x86_64.whl
-polars_plugin_option_pricing-0.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+❯ ls dist
+polars_plugin_option_pricing-0.1.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+polars_plugin_option_pricing-0.1.0-cp38-abi3-manylinux_2_34_x86_64.whl
+polars_plugin_option_pricing-0.1.0-cp38-abi3-win_amd64.whl
 polars_plugin_option_pricing-0.1.0.tar.gz
 ```
 
