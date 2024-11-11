@@ -1,10 +1,10 @@
 import polars as pl
 
-from ._rust import __version__ as _version_rust
+# from ._rust import __version__ as _version_rust
 from ._typing import ImpliedVolMethod, StrOrExpr
 from ._util import pl_plugin, str_to_expr
 
-__version_rust__ = str(_version_rust)
+# __version_rust__ = str(_version_rust)
 __version__ = "0.1.0"
 
 
