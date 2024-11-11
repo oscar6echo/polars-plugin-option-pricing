@@ -11,14 +11,15 @@ ENV PATH=/root/.cargo/bin:$PATH
 
 RUN rustup target add x86_64-pc-windows-gnu
 
-RUN python -m pip install --no-cache-dir cffi && \
+RUN python -m pip install --no-cache-dir -U pip && \
+    python -m pip install --no-cache-dir cffi && \
     python -m pip install --no-cache-dir maturin
 
-RUN wget -q -P /opt https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz && \
-    cd /opt && \
-    tar xf zig-linux-x86_64-0.13.0.tar.xz
+# RUN wget -q -P /opt https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz && \
+#     cd /opt && \
+#     tar xf zig-linux-x86_64-0.13.0.tar.xz
 
-ENV  PATH=/opt/zig-linux-x86_64-0.13.0:$PATH
+# ENV  PATH=/opt/zig-linux-x86_64-0.13.0:$PATH
 
 WORKDIR /io
 COPY ./maturin-build-win.sh .
