@@ -110,10 +110,20 @@ maturin build --release --target x86_64-unknown-linux-gnu --zig --out dist
 # ------- build windows wheel
 # debian & co
 sudo apt-get install mingw-w64
-# redhat & co
-sudo dnf install mingw64-gcc
 
 maturin build --release --target x86_64-pc-windows-gnu --out dist
+# result: 
+# build: works fine, no error or warning 
+# run: silently fails, zero message, and stops program before other python lines
+
+# ------- build windows wheel - 2nd attemps
+# docker
+docker build -t builder-win:local -f ./win.Dockerfile .
+docker run --rm -v "$(pwd)":/io builder-win:local
+# result: 
+# builds without error or warning 
+# run: silently fails, zero message, and stops program before other python lines
+
 ```
 
 This produces wheels for linux and windows:
