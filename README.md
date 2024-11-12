@@ -99,30 +99,35 @@ Commands:
 
 ```sh
 # ------- build native wheel
-maturin build --release --out dist
+maturin build --sdist --release --out dist
 
 # ------- build manylinux wheel
 # install zig
-pip install ziglang
+pip install maturin[zig]
 
 maturin build --release --target x86_64-unknown-linux-gnu --zig --out dist
 
-# ------- build windows wheel
+
+#######################################################
+# NOTE
+# build wheel win specific
+# edit src/lib.rs and comment PolarsAllocator 
+# ref https://github.com/PyO3/maturin/discussions/2297
+#######################################################
+
+# ------- build windows wheel - 1st method
 # debian & co
 sudo apt-get install mingw-w64
 
-maturin build --release --target x86_64-pc-windows-gnu --out dist
-# result: 
-# build: works fine, no error or warning 
-# run: silently fails, zero message, and stops program before other python lines
+# check compilation
+maturin build --profile dev --target x86_64-pc-windows-gnu --out dist
 
-# ------- build windows wheel - 2nd attemps
+maturin build --release --target x86_64-pc-windows-gnu --out dist
+
+# ------- build windows wheel - 2nd method
 # docker
 docker build -t builder-win:local -f ./win.Dockerfile .
 docker run --rm -v "$(pwd)":/io builder-win:local
-# result: 
-# builds without error or warning 
-# run: silently fails, zero message, and stops program before other python lines
 
 ```
 
